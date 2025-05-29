@@ -13,14 +13,41 @@ We propose an efficient radiance field rendering algorithm that incorporates a r
 - Mar 18, 2025: Revise literature review. Support depthanythingv2 relative depth loss and mast3r metric depth loss for a better geometry.
 - Mar 8, 2025: Support ScanNet++ dataset. Check the [benchmark](https://kaldir.vc.in.tum.de/scannetpp/benchmark/nvs) for our results on the 3rd-party hidden set evaluation. Our [short article](./articles/scannetpp_dataset.md) may be helpful if you want to work on scannet or indoor environement.
 
-## Install
-1. Install Pytorch first. The tested versions are `1.13.1+cu117` and `2.5.0+cu124`.
-2. May need to install cuda-toolkit for your virtual environment that is aligned with the installed pytorch:
-    - `conda install -y -c "nvidia/label/cuda-11.7.0" cuda-toolkit`
-    - `conda install -y -c "nvidia/label/cuda-12.4.0" cuda-toolkit`
-3. `pip install -r requirements.txt` for other packages.
-4. `pip install -e cuda/` for sparse voxel CUDA rasterizer and some utilities.
+## READ THIS BEFORE INSTALL
 
+I created this fork from the oiginal svraster project to guide users through installing svraster on Windows PCs. This can also be installed on Linux skipping any Windows specific instructions. Please refer to the original project page for the latest developments as this fork does not contain future developments and will not be maintained long term.
+
+## Install
+This project has a codebase that is currently only compatible with Linux. However, you can run this project on a Windows machine by setting up Ubuntu via WSL. [I have a complete video guide here](https://youtu.be/xyOdoZp4u_c).
+
+After setting up Ubuntu via WSL, follow these steps:
+
+### Create a conda environment:
+```
+conda create -n svraster python=3.9
+conda activate svraster
+```
+
+### Install Pytorch
+The tested versions are `1.13.1+cu117` and `2.5.0+cu124`.
+
+```
+## For 2.5.0+cu12 
+pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url
+
+## For 1.13.1+cu117
+pip install torch==1.13.0+cu117 torchvision==0.14.0+cu117 torchaudio==0.13.0 --extra-index-url https://download.pytorch.org/whl/cu117
+```
+
+You need to install cuda-toolkit for your conda environment that is aligned with the installed pytorch:
+- `conda install -y -c "nvidia/label/cuda-11.7.0" cuda-toolkit`
+- `conda install -y -c "nvidia/label/cuda-12.4.0" cuda-toolkit`
+
+### Install requirements, rasterizer, and utilities
+```
+pip install -r requirements.txt
+pip install -e cuda/
+```
 
 ## Reconstructing your own capture
 Below go through the workflow for reconstruction from a scene capturing. Check [example.ipynb](./notebooks/example.ipynb) for an actual example.
