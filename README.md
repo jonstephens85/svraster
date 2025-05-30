@@ -65,9 +65,43 @@ pip install -e cuda/
 Below go through the workflow for reconstruction from a scene capturing. Check [example.ipynb](./notebooks/example.ipynb) for an actual example.
 
 ### Data preparation
-We recommend to follow [InstantNGP](https://github.com/NVlabs/instant-ngp/blob/master/docs/nerf_dataset_tips.md#colmap) video or images processing steps to extract camera parameters using COLMAP. [NerfStudio](https://docs.nerf.studio/quickstart/custom_dataset.html) also works.
+The original project recommends following [InstantNGP](https://github.com/NVlabs/instant-ngp/blob/master/docs/nerf_dataset_tips.md#colmap) video or images processing steps to extract camera parameters using COLMAP. [NerfStudio](https://docs.nerf.studio/quickstart/custom_dataset.html) also works.
 
 We now only support pinhole camera mode. Please preprocess with `--colmap_camera_model PINHOLE` of InstantNGP script or `--camera-type pinhole` of NerfStudio script.
+
+You can use the lightweight script I made following these instructions:
+
+1. Download the script:
+[Download run_colmap.sh](https://github.com/jonstephens85/svraster/raw/main/run_colmap.sh)
+
+2. Your image data should be placed in the following structure inside the repository:
+```
+svraster/
+├── run_colmap.sh
+├── data/
+│   └── my-project/
+│       ├── images/              # <-- Place input images here
+│       └──                     # database.db and colmap results will be generated here
+```
+
+3. From the root of the svraster/ repo, run:
+```
+chmod +x run_colmap.sh            # Only need to run this the first time using the script
+./run_colmap.sh <project-name> [--matcher exhaustive]
+```
+
+- <project-name> is the name of the folder inside data/ that contains your images.
+- Default matcher is sequential. Use --matcher exhaustive to run exhaustive matching.
+
+4. Exmaple uage:
+```
+./run_colmap.sh nvidia
+```
+
+To override the default matcher and run exhaustive matching:
+```
+./run_colmap.sh nvidia --matcher exhaustive
+```
 
 ### Scene optimization
 ```bash
