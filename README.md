@@ -59,6 +59,7 @@ cd svraster
 ```
 pip install -r requirements.txt
 pip install -e cuda/
+pip install viser
 ```
 
 ## Reconstructing your own capture
