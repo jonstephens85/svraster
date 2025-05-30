@@ -54,6 +54,8 @@ else
   colmap sequential_matcher --database_path "$DB_PATH"
 fi
 
+mkdir -p "$OUTPUT_PATH"
+
 # === Mapping ===
 colmap mapper \
     --database_path "$DB_PATH" \
