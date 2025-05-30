@@ -33,7 +33,7 @@ The tested versions are `1.13.1+cu117` and `2.5.0+cu124`.
 
 ```
 ## For 2.5.0+cu12 
-pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url
+pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url https://download.pytorch.org/whl/cu124
 
 ## For 1.13.1+cu117
 pip install torch==1.13.0+cu117 torchvision==0.14.0+cu117 torchaudio==0.13.0 --extra-index-url https://download.pytorch.org/whl/cu117
