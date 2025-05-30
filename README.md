@@ -31,17 +31,29 @@ conda activate svraster
 ### Install Pytorch
 The tested versions are `1.13.1+cu117` and `2.5.0+cu124`.
 
+#### Option 1: Install PyTorch 2.5.0 with CUDA 12.4
 ```
-## For 2.5.0+cu12 
 pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url https://download.pytorch.org/whl/cu124
+```
+Ensure your environment includes the CUDA 12.4 toolkit (if you have 12.4 installed system-wide, skip this step)
+```
+conda install -y -c "nvidia/label/cuda-12.4.0" cuda-toolkit
+```
 
-## For 1.13.1+cu117
+#### Option 2: Install PyTorch 1.13.1 with CUDA 11.7
+```
 pip install torch==1.13.0+cu117 torchvision==0.14.0+cu117 torchaudio==0.13.0 --extra-index-url https://download.pytorch.org/whl/cu117
 ```
+Also install the matching toolkit:
+```
+conda install -y -c "nvidia/label/cuda-12.4.0" cuda-toolkit
+```
 
-You need to install cuda-toolkit for your conda environment that is aligned with the installed pytorch:
-- `conda install -y -c "nvidia/label/cuda-11.7.0" cuda-toolkit`
-- `conda install -y -c "nvidia/label/cuda-12.4.0" cuda-toolkit`
+### Pull Source Code
+```
+git clone https://github.com/NVlabs/svraster.git
+cd svraster
+```
 
 ### Install requirements, rasterizer, and utilities
 ```
